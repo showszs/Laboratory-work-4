@@ -12,16 +12,10 @@ jobs:
       - name: Checkout Code in Repository
         uses: actions/checkout@v4
 
-      - name: Lint JavaScript Program Code
-        uses: github/super-linter@v5
-        env:
- 
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JAVASCRIPT_STANDARD: true
+      - name: Install JSON Linter Biome
+        run: |
+          npm install --save-dev --save-exact @biomejs/biome
 
-          FILTER_REGEX_INCLUDE: '^2\.6-GitHubActions/ProgramCodeModified\.js$'
-
-  
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-          
+      - name: Validate all JS files
+        run: |
+          npx @biomejs/biome check "**/*.js"
