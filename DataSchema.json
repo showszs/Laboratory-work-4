@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Physical Data Schema for MongoDB",
+  "description": "Фізична схема бази даних для системи користувачів і датчиків вологості",
+  "type": "object",
+  "properties": {
+    "Користувач": {
+      "type": "array",
+      "description": "Список користувачів",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "імʼя": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 40
+          },
+          "контакт": {
+            "type": "string",
+            "format": "email"
+          },
+          "критеріїПошуку": {
+            "type": "object",
+            "properties": {
+              "цінаВід": { "type": "number", "minimum": 0 },
+              "цінаДо": { "type": "number", "minimum": 0 },
+              "тип": { "type": "string" },
+              "район": { "type": "string", "minLength": 2, "maxLength": 50 }
+            },
+            "required": ["цінаВід", "цінаДо"]
+          },
+          "пороговеЗначення": {
+            "type": "object",
+            "properties": {
+              "мінімум": { "type": "number", "minimum": 20, "maximum": 90 },
+              "максимум": { "type": "number", "minimum": 20, "maximum": 90 },
+              "сповіщення": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "тип": { "type": "string", "enum": ["email", "push", "SMS"] },
+                    "текст": { "type": "string", "maxLength": 200 }
+                  },
+                  "required": ["тип", "текст"]
+                }
+              }
+            },
+            "required": ["мінімум", "максимум"]
+          }
+        },
+        "required": ["_id", "імʼя", "контакт"]
+      }
+    },
+    "ДатчикВологості": {
+      "type": "array",
+      "description": "Список датчиків вологості",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "ідентифікатор": { "type": "string", "minLength": 5, "maxLength": 20 },
+          "вологість": {
+            "type": "object",
+            "properties": {
+              "рівень": { "type": "number", "minimum": 20, "maximum": 90 }
+            },
+            "required": ["рівень"]
+          }
+        },
+        "required": ["_id", "ідентифікатор", "вологість"]
+      }
+    }
+  },
+  "required": ["Користувач", "ДатчикВологості"]
+}
+
