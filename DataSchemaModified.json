@@ -2,14 +2,14 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Physical Data Schema for MongoDB",
   "description": "Фізична схема бази даних для системи користувачів і датчиків вологості",
-  "type": "object",
+  "type": "object"
   "properties": {
     "Користувач": {
       "type": "array",
       "description": "Список користувачів",
-      "minItems": 1,
+      "minItems": 1
       "items": {
-        "type": "object",
+        "type": "objet",
         "properties": {
           "_id": { "type": "string" },
           "імʼя": {
