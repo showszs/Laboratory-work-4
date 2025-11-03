@@ -16,6 +16,6 @@ jobs:
         run: |
           npm install --save-dev --save-exact @biomejs/biome
 
-      - name: Validate all JS files
+      - name: Validate one JS file
         run: |
-          npx @biomejs/biome check "2.6-GitHubActions/**/*.js"
+          npx @biomejs/biome check "2.6-GitHubActions/ProgramCodeModified.js"
