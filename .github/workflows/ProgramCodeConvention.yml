@@ -9,13 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code in Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Debug repository files
+        run: |
+          pwd
+          ls -R
 
       - name: Install Biome
         run: |
           npm install --save-dev --save-exact @biomejs/biome
 
-      - name: Validate one JS file
+      - name: Validate JS files
         run: |
-          npx @biomejs/biome check "2.6-GitHubActions/ProgramCodeModified.js"
+          npx @biomejs/biome check $(find . -type f -name "*.js")
