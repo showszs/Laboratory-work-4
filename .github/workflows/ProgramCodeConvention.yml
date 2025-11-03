@@ -17,5 +17,5 @@ jobs:
         uses: github/super-linter@v5
         env:
           VALIDATE_JAVASCRIPT_ES: true
-          FILTER_REGEX_INCLUDE: ./2.6-GitHubActions/ProgramCode.js
+          FILTER_REGEX_INCLUDE: ./2.6-GitHubActions/ProgramCodeModified.js
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
