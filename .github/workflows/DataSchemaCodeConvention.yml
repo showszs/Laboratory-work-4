@@ -1,0 +1,19 @@
+name: JSON Linter
+
+on:
+  push:
+    branches: main
+
+jobs:
+  json_linter_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        # клонування репозиторію для подальшої роботи з файлами на сервері
+        uses: actions/checkout@v4
+
+      - name: Start JSON Linter
+        run: |
+          npm install -g @prantlf/jsonlint
+          jsonlint DataSchema.json
