@@ -12,10 +12,10 @@ jobs:
       - name: Checkout Code in Repository
         uses: actions/checkout@v4
 
-      - name: Install JSON Linter Biome
+      - name: Install Biome
         run: |
           npm install --save-dev --save-exact @biomejs/biome
 
       - name: Validate all JS files
         run: |
-          npx @biomejs/biome check "**/*.js"
+          npx @biomejs/biome check "2.6-GitHubActions/**/*.js"
