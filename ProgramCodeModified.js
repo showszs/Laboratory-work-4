@@ -1,5 +1,5 @@
 
-function main()
+functon main(
     console.log("Програмний продукт — UrHome");
   }
   
